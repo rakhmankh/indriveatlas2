@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~9.0.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  "initialViewState": {
+    "latitude": 51.15,
+    "longitude": 71.42,
+    "pitch": 40,
+    "zoom": 11
+  },
+  "layers": [
+    {
+      "@@type": "H3HexagonLayer",
+      "data": [
+        {
+          "count_trips": 4035,
+          "dayofweek": 6,
+          "h3": "872153806ffffff",
+          "hour": 23,
+          "predicted": 3506.631974929122
+        },
+        {
+          "count_trips": 26,
+          "dayofweek": 6,
+          "h3": "872153815ffffff",
+          "hour": 23,
+          "predicted": -17.517644591267135
+        },
+        {
+          "count_trips": 1808,
+          "dayofweek": 6,
+          "h3": "872153831ffffff",
+          "hour": 23,
+          "predicted": 2006.2260695100028
+        },
+        {
+          "count_trips": 2397,
+          "dayofweek": 6,
+          "h3": "872153833ffffff",
+          "hour": 23,
+          "predicted": 1953.7240600643092
+        }
+      ],
+      "elevationScale": 3,
+      "extruded": true,
+      "getElevation": "@@=predicted",
+      "getFillColor": "@@=[predicted * 5, 200 - predicted * 2, 50, 180]",
+      "getHexagon": "@@=h3",
+      "id": "0e8564e9-78bd-4133-9db1-1fb40ff5417c",
+      "pickable": true
+    }
+  ],
+  "mapProvider": "carto",
+  "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+  "views": [
+    {
+      "@@type": "MapView",
+      "controller": true
+    }
+  ]
+};
+    const tooltip = {'text': 'H3: {h3}\nТекущий спрос: {count_trips}\nПрогноз: {predicted}'};
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration
+    });
+
+  </script>
+</html>

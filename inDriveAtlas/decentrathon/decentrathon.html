@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>FairRide — Честные поездки</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="decentrathon.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<header id="header">
+  <div class="header-bg"></div>
+  <div class="header-content">
+    <div class="logo">
+      <img src="images/inDriveLogo.png" alt="FairRide" class="logo-img">
+      <span>inDrive</span>
+    </div>
+    <div class="header-controls">
+      <button class="lang-btn">Ru</button>
+      <button class="menu-btn" id="menu-btn">Меню ☰</button>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <img src="https://media.gqitalia.it/photos/60ae458b157881e8adc00fd2/16:9/w_2560%2Cc_limit/AdobeStock_269517081.jpeg" alt="Водитель" class="hero-bg">
+  <div class="hero-overlay-bg"></div>
+  <div class="hero-content">
+    <h1>
+      Отслеживайте маршруты, зоны спроса и популярные точки заказов в режиме  <span class="highlight">реального времени</span><br>
+      <br>
+    </h1>
+    <button class="cta-btn more-btn">Подробнее</button>
+  </div>
+</section>
+<section class="features">
+  <span class="section-label">Наши преимущества</span>
+  <h2>Почему выбирают inDrive Atlas?</h2>
+  <p class="features-subtitle">
+    Мы создаём инструмент, который помогает администраторам и разработчикам анализировать поездки,
+    находить точки роста и управлять сервисом на основе данных.
+  </p>
+  <div class="features-grid">
+    <div class="feature">
+      <img src="images/analitikapoezdkov.svg" alt="Аналитика" class="feature-img">
+      <h3>Аналитика поездок</h3>
+      <p>Детальная статистика по маршрутам и пользователям.</p>
+    </div>
+    <div class="feature">
+      <img src="images/map.svg" alt="Аналитика" class="feature-img">
+      <h3>Интерактивные карты</h3>
+      <p>Визуализация горячих зон и точек спроса.</p>
+    </div>
+    <div class="feature">
+      <img src="images/prognoz.svg" alt="Аналитика" class="feature-img">
+      <h3>Прогнозирование</h3>
+      <p>Оценка спроса по времени суток и дням недели.</p>
+    </div>
+  </div>
+  <button class="cta-btn demo-btn">Попробовать демо</button>
+</section>
+<section class="capabilities">
+  <h2>Что умеет inDrive Atlas?</h2>
+  <div class="capabilities-grid">
+    <div class="capability">
+      <h3><span class="highlight">Карта поездок</span></h3>
+      <p>Смотрите, где чаще всего берут такси, и выявляйте горячие зоны спроса.</p>
+    </div>
+    <div class="capability">
+      <h3><span class="highlight">Динамика спроса</span></h3>
+      <p>Анализируйте статистику по времени суток, дням недели и районам города.</p>
+    </div>
+    <div class="capability">
+      <h3><span class="highlight">Интеграции</span></h3>
+      <p>Простое подключение к админ-панелям и API для разработчиков.</p>
+    </div>
+    <div class="capability">
+      <h3><span class="highlight">Уведомления</span></h3>
+      <p>Настраивайте оповещения о пиковых нагрузках и необычных маршрутах.</p>
+    </div>
+  </div>
+</section>
+<section class="atlas">
+  <h2>inDrive Atlas</h2>
+  <p>Интерактивная карта и набор инструментов для анализа поездок.</p>
+  <div class="atlas-layout">
+    <div class="atlas-controls">
+      <div class="capability-card">
+        <div class="capability-icon">
+          <i class="fa-solid fa-car"></i>
+        </div>
+        <div class="capability-text">
+          <h3>Симуляция поездки</h3>
+        </div>
+      </div>
+      <div class="capability-card">
+        <div class="capability-icon">
+          <i class="fa-solid fa-fire"></i>
+        </div>
+        <div class="capability-text">
+          <h3>Горячие зоны</h3>
+        </div>
+      </div>
+      <div class="capability-card">
+        <div class="capability-icon">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <div class="capability-text">
+          <h3>Прогноз спроса</h3>
+        </div>
+      </div>
+      <div class="capability-card">
+        <div class="capability-icon">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div class="capability-text">
+          <h3>Аномалии</h3>
+        </div>
+      </div>
+      <div class="capability-card">
+        <div class="capability-icon">
+          <i class="fa-solid fa-font-awesome"></i>
+        </div>
+        <div class="capability-text">
+          <h3>Рекомендации водителям</h3>
+        </div>
+      </div>
+    </div>
+    <div class="atlas-map">
+      <div id="map"></div>
+    </div>
+  </div>
+</section>
+<section class="faq">
+  <span class="section-label">Часто задаваемые вопросы</span>
+  <h2>
+    Часто задаваемые <span class="highlight">вопросы</span>
+  </h2>
+  <div class="faq-item">
+    <button class="faq-question">
+      У меня новый номер телефона, и я не могу войти в аккаунт
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>Чтобы восстановить доступ, используйте функцию смены номера телефона в настройках или обратитесь в поддержку.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">
+      Как поменять фото профиля в inDrive?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>Зайдите в ваш профиль, нажмите на иконку фото и загрузите новое изображение.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">
+      Как удалить свою учётную запись в inDrive?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <p>Перейдите в раздел настроек аккаунта и выберите «Удалить учётную запись».</p>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>© 2025 inDrive. Все права защищены.</p>
+</footer>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
